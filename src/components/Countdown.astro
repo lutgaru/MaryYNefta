@@ -1,0 +1,92 @@
+---
+const targetDate = new Date("2025-03-15T00:00:00Z"); // Fecha objetivo
+let timeLeft = "Cargando...";
+---
+
+<div
+    class="text-3xl lg:text-6xl outline-0 text-center font-countdown text-countdown p-2"
+    id="countdown"
+>
+    {timeLeft}
+</div>
+
+<script>
+    async function getServerTime() {
+        try {
+            const ipResponse = await fetch("https://ipapi.co/json/");
+            const ipData = await ipResponse.json();
+            const timeZone = ipData.timezone;
+
+            console.log("Zona horaria detectada:", timeZone);
+
+            const timeResponse = await fetch(
+                `https://www.timeapi.io/api/Time/current/zone?timeZone=${timeZone}`,
+            );
+            const timeData = await timeResponse.json();
+
+            console.log("Fecha y hora obtenida:", timeData.dateTime); // 📌 "2025-03-08T06:06:07.1027541"
+
+            return new Date(timeData.dateTime);
+        } catch (error) {
+            console.error("Error obteniendo la hora del servidor:", error);
+            return new Date(); // En caso de error, usa la hora local
+        }
+    }
+
+    async function updateCountdown() {
+        const serverTime = await getServerTime();
+        const targetDate = new Date("2026-01-03T14:00:00Z");
+
+        // Calculamos la diferencia entre la hora local y la del servidor
+        const timeOffset = serverTime - Date.now();
+
+        function calculateTimeLeft() {
+            const now = Date.now() + timeOffset; // Ajusta la hora local con la diferencia
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                return "00m 00d 00:00:00";
+            }
+
+            // Convertimos a fechas para calcular los meses y días restantes
+            const nowDate = new Date(now);
+            const target = new Date(targetDate);
+
+            let months =
+                (target.getFullYear() - nowDate.getFullYear()) * 12 +
+                (target.getMonth() - nowDate.getMonth());
+
+            if (nowDate.getDate() > target.getDate()) {
+                months -= 1;
+            }
+
+            // Calculamos la diferencia de días después de restar los meses completos
+            const nextMonth = new Date(nowDate);
+            nextMonth.setMonth(nowDate.getMonth() + months);
+            const daysLeft = Math.floor(
+                (target - nextMonth) / (1000 * 60 * 60 * 24),
+            );
+
+            const hours = String(
+                Math.floor((diff / (1000 * 60 * 60)) % 24),
+            ).padStart(2, "0");
+            const minutes = String(
+                Math.floor((diff / (1000 * 60)) % 60),
+            ).padStart(2, "0");
+            const seconds = String(Math.floor((diff / 1000) % 60)).padStart(
+                2,
+                "0",
+            );
+
+            return `${months}m ${daysLeft}d ${hours}:${minutes}:${seconds}`;
+        }
+
+        document.getElementById("countdown").innerText = calculateTimeLeft();
+        setInterval(() => {
+            document.getElementById("countdown").innerText =
+                calculateTimeLeft();
+        }, 1000);
+    }
+
+    updateCountdown();
+</script>

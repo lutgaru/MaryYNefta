@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "kapakana";
+    src: url("/fonts/Kapakana[wght].ttf") format("opentype"); 
+    font-weight: normal;
+    font-style: normal;
+    /* font-display: swap; */
+  }
+
+  @font-face {
+    font-family: "italianno";
+    src: url("/fonts/Italianno-Regular.ttf") format("opentype"); 
+    font-weight: normal;
+    font-style: normal;
+    /* font-display: swap; */
+  }
+
+
+@theme {
+    --color-rose: #F4E0D9;
+    --color-tahiti: #3ab7bf;
+    --color-bermuda: #78dcca;
+    --color-countdown: #81662E;
+    --font-display: "kapakana";
+    --font-countdown: "kapakana";
+    --font-names: "italianno";
+    --color-gold1: #EACC7C;
+    --color-gold2: #D4BD42;
+  }
+
+
+  
