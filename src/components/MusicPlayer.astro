@@ -1,0 +1,45 @@
+---
+interface Props {
+    song: string;
+    volume?: number;
+}
+const { song, volume = 0.5 } = Astro.props;
+---
+
+<music-player data-song={song} data-volume={volume}>
+    <button
+        id="audio-toggle-btn"
+        class="fixed bottom-4 right-4 px-4 py-2 rounded-4xl bg-white/50 font-semibold shadow hover:bg-white transition z-50"
+    >
+        ⏸️
+    </button>
+</music-player>
+
+<script>
+    class MusicPlayer extends HTMLElement {
+        constructor() {
+            super();
+            let isPlaying = true;
+            const audio = new Audio(this.dataset.song);
+            audio.volume = parseFloat(this.dataset.volume) || 0.4; // Establece el volumen por defecto
+            audio.addEventListener("canplaythrough", () => {
+                audio.play();
+            });
+            // Lee el mensaje del atributo data.
+            const message = this.dataset.message;
+            const button = this.querySelector("button");
+            button.addEventListener("click", () => {
+                if (!isPlaying) {
+                    audio.play();
+                    button.textContent = "⏸️";
+                } else {
+                    audio.pause();
+                    button.textContent = "▶️";
+                }
+                isPlaying = !isPlaying;
+            });
+        }
+    }
+
+    customElements.define("music-player", MusicPlayer);
+</script>
