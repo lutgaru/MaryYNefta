@@ -1,0 +1,25 @@
+---
+import { getImage, Image } from "astro:assets";
+import paperimage from "../assets/augustine-wong-3Om4DHcaAc0-unsplash.avif";
+const paperBackground = await getImage({ src: paperimage, format: "webp" });
+import flowers from "../assets/layer1.svg";
+import Countdown from "./Countdown.astro";
+---
+
+<div
+    class=" relative w-full h-screen flex items-center justify-center  -z-10"
+    style={`background-image: url(${paperBackground.src});`}
+>
+<div class="absolute inset-0 bg-white opacity-50 -z-10"></div>
+    <div class="content-center text-center z-10">
+        <p
+            class="text-4xl lg:text-7xl font-names bg-clip-text bg-linear-to-r from-gold1 to-gold2 text-transparent"
+        >
+            Mari y Nefta
+        </p>
+        <p class="text-4xl font-display">
+            3 de enero del 2026
+        </p>
+        <Countdown />
+    </div>
+</div>
