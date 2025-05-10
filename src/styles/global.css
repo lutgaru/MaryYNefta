@@ -1,33 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import "tailwindcss";
 
 @font-face {
-    font-family: "kapakana";
-    src: url("/MaryYNefta/fonts/Kapakana[wght].ttf") format("opentype"); 
-    font-weight: normal;
-    font-style: normal;
-    /* font-display: swap; */
-  }
+  font-family: "kapakana";
+  src: url("/MaryYNefta/fonts/Kapakana[wght].ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  /* font-display: swap; */
+}
 
-  @font-face {
-    font-family: "italianno";
-    src: url("/MaryYNefta/fonts/Italianno-Regular.ttf") format("opentype"); 
-    font-weight: normal;
-    font-style: normal;
-    /* font-display: swap; */
-  }
+@font-face {
+  font-family: "italianno";
+  src: url("/MaryYNefta/fonts/Italianno-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  /* font-display: swap; */
+}
 
 
 @theme {
-    --color-rose: #F4E0D9;
-    --color-tahiti: #3ab7bf;
-    --color-bermuda: #78dcca;
-    --color-countdown: #81662E;
-    --font-display: "kapakana";
-    --font-countdown: "kapakana";
-    --font-names: "italianno";
-    --color-gold1: #EACC7C;
-    --color-gold2: #D4BD42;
-  }
-
-
-  
+  --color-rose: #F4E0D9;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+  --color-countdown: #81662E;
+  --font-display: "kapakana";
+  --font-countdown: "kapakana";
+  --font-names: "italianno";
+  --color-gold1: #EACC7C;
+  --color-gold2: #D4BD42;
+  --font-ibm: "IBM Plex Serif", serif;
+}
