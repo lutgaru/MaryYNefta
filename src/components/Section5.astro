@@ -1,0 +1,44 @@
+---
+import Arch from '../assets/arch.svg';
+import Dish from '../assets/dish.svg';
+import Hearth from '../assets/hearth.svg';
+import Mon from '../assets/mon.svg';
+---
+
+<div class="flex flex-col items-center justify-center bg-white py-10">
+    <div>
+        <p class="text-2xl font-ibm p-2 text-gray-500">MINUTO A MINUTO</p>
+    </div>
+    <div class="flex md:w-1/2 justify-center ">
+        <div class="text-end w-1/2">
+            <p class="p-2 text-lg font-ibm text-transparent bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-700 bg-clip-text animate-text-wave">CEREMONIA</p>
+            <p class="p-2 text-md font-ibm font-light text-amber-900">12:00-1:00</p>
+            <p class="p-2 text-md font-ibm text-gray-500">Comparte con nosotros este momento.</p>
+        </div>
+        <Arch width={140} height={140} fill={"#6a7282"} class:list={"w-1/2"} />
+    </div>
+    <div class="flex md:w-1/2 justify-center ">
+        <Dish width={140} height={140} fill={"#6a7282"}  class:list={"w-1/2"}  />
+        <div class="w-1/2">
+            <p class="p-2 text-lg font-ibm text-transparent bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-700 bg-clip-text animate-text-wave">CENA</p>
+            <p class="p-2 text-md font-ibm font-light text-amber-900">12:00-1:00</p>
+            <p class="p-2 text-md font-ibm text-gray-500">Cenar juntos hace esta noche especial.</p>
+        </div>
+    </div>
+    <div class="flex md:w-1/2 justify-center ">
+        <div class="text-end w-1/2">
+            <p class="p-2 text-lg font-ibm text-transparent bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-700 bg-clip-text animate-text-wave">FIESTA</p>
+            <p class="p-2 text-md font-ibm font-light text-amber-900">12:00-1:00</p>
+            <p class="p-2 text-md font-ibm text-gray-500">¡Hey! comienza la diversión.</p>
+        </div>
+        <Hearth width={140} height={140} fill={"#6a7282"}  class:list={"w-1/2"} />
+    </div>
+    <div class="flex md:w-1/2 ">
+        <Mon width={140} height={140} fill={"#6a7282"}   class:list={"w-1/2"}  />
+        <div class=" w-1/2">
+            <p class="p-2 text-lg font-ibm text-transparent bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-700 bg-clip-text animate-text-wave">TRASNOCHADO</p>
+            <p class="p-2 text-md font-ibm font-light text-amber-900">12:00-1:00</p>
+            <p class="p-2 text-md font-ibm text-gray-500">Para los desvelados.</p>
+        </div>
+    </div>
+</div>

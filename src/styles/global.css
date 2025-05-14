@@ -30,3 +30,17 @@
   --color-gold2: #D4BD42;
   --font-ibm: "IBM Plex Serif", serif;
 }
+
+@keyframes textWave {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+.animate-text-wave {
+  background-size: 200% auto;
+  animation: textWave 5s linear infinite;
+}
