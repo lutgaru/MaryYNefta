@@ -7,19 +7,31 @@ import Countdown from "./Countdown.astro";
 ---
 
 <div
-    class=" relative w-full h-screen flex items-center justify-center  -z-10"
+    id="banner"
+    class="relative w-full h-screen flex items-center justify-center -z-10"
     style={`background-image: url(${paperBackground.src});`}
 >
-<div class="absolute inset-0 bg-white opacity-50 -z-10"></div>
+    <div class="absolute inset-0 bg-white opacity-50 -z-10 scroll-smooth"></div>
     <div class="content-center text-center z-10">
         <p
             class="text-4xl lg:text-7xl font-names bg-clip-text bg-linear-to-r from-gold1 to-gold2 text-transparent"
         >
             Mari y Nefta
         </p>
-        <p class="text-4xl font-display">
-            3 de enero del 2026
-        </p>
+        <p class="text-4xl font-display">3 de enero del 2026</p>
         <Countdown />
     </div>
 </div>
+
+<script type="module">
+    const banner = document.getElementById("banner");
+    function handleScroll() {
+        if (window.scrollY > banner.offsetHeight / 50) {
+            document
+                .getElementById("nos-casamos")
+                .scrollIntoView({ behavior: "smooth" });
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }
+    window.addEventListener("scroll", handleScroll);
+</script>
