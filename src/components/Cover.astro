@@ -1,0 +1,41 @@
+---
+---
+<div
+  id="overlay-banner"
+  class="fixed inset-0 z-80 flex items-center justify-center bg-white opacity-100 transition-opacity duration-1000"
+>
+  <div
+    class="absolute inset-0 pointer-events-none z-70"
+    style="
+      clip-path: polygon(50% 50%, 0 0, 100% 0);
+      background: #e6e3e3;
+      height: 100%;
+      width: 100%;
+    "
+  ></div>
+  
+  <button
+    id="close-banner"
+    class="z-75 p-5 rounded-full bg-red-700 font-countdown text-amber-200 text-4xl shadow-amber-800 shadow-xl transition-all duration-300 hover:p-6"
+  >
+    Bienvenido
+  </button>
+</div>
+
+<script type="module">
+  const button = document.getElementById('close-banner');
+  const banner = document.getElementById('overlay-banner');
+
+  button.addEventListener('click', () => {
+    banner.classList.remove('opacity-100');
+    banner.classList.add('opacity-0');
+
+    // Esperar a que termine la transición antes de ocultar
+    setTimeout(() => {
+      banner.style.display = 'none';
+    }, 1100); // un poco más de 1000ms por seguridad
+    if (typeof window.toggleAudio === "function") {
+      window.toggleAudio();
+    }
+  });
+</script>

@@ -11,13 +11,15 @@ import Section4 from "./Section4.astro";
 import Section5 from "./Section5.astro";
 import Gallery from "./Gallery.astro";
 import Footer from "./Footer.astro";
+import Cover from "./Cover.astro";
 ---
 
 <div id="container">
+    <MusicPlayer song="/MaryYNefta/song_wedding.mp3" volume={0.3} />
+    <Cover />
     <div>
         <Banner />
     </div>
-    <!-- <MusicPlayer song="/MaryYNefta/song_wedding.mp3" volume={0.3} /> -->
     <Navbar />
     <Section1 />
     <Section2 />
