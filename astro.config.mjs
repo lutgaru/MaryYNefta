@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
+import vue from '@astrojs/vue';
 // https://astro.build/config
 export default defineConfig({
-    vite: {
-        plugins: [tailwindcss()],
-      },
-      site: 'https://lutgaru.github.io',
+  vite: {
+      plugins: [tailwindcss()],
+    },
+  site: 'https://lutgaru.github.io',
   base: 'MaryYNefta',
+  integrations: [vue()],
 });
