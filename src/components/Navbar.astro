@@ -132,5 +132,13 @@ import Logoletter from "../assets/logoletter.svg";
             menuToggle.setAttribute("aria-expanded", !isExpanded);
             mobileMenu.classList.toggle("hidden");
         });
+
+        // Cerrar el menú móvil al hacer clic en cualquier enlace
+        mobileMenu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
     });
 </script>
