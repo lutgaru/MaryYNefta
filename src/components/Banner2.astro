@@ -13,17 +13,33 @@ import Countdown from "./Countdown.astro";
 >
     <div class="absolute inset-0 bg-white opacity-50 -z-10 scroll-smooth"></div>
     <div class="content-center text-center z-10">
-        <p
-            class="text-4xl lg:text-7xl font-names bg-clip-text bg-linear-to-r from-gold1 to-gold2 text-transparent"
-        >
-            Mari y Nefta
-        </p>
-        <p class="text-4xl font-display">3 de enero del 2026</p>
+<p
+  id="dynamic-name"
+  class="text-7xl lg:text-9xl font-names p-2 text-tallado-hacia-adentro"
+>
+  Mari y Nefta
+</p>
+        <p class=" font-ibm p-8 text-2xl italic text-gray-600">te invitan a su boda el</p>
+        <p class="text-4xl font-ibm italic p-7 text-gray-600">3 de enero del 2026</p>
         <Countdown />
     </div>
 </div>
 
 <script type="module">
+    const names = [
+    "Mari y Nefta",
+    "Mar y Neft",
+    "Marisa y Adrian",
+    "Marisela y Neftalí"
+  ];
+
+  let index = 0;
+  const nameElement = document.getElementById("dynamic-name");
+
+  setInterval(() => {
+    index = (index + 1) % names.length;
+    nameElement.textContent = names[index];
+  }, 3000);
     const banner = document.getElementById("banner");
     function handleScroll() {
         if (window.scrollY > banner.offsetHeight / 50) {
@@ -35,3 +51,15 @@ import Countdown from "./Countdown.astro";
     }
     window.addEventListener("scroll", handleScroll);
 </script>
+
+<style>
+.text-tallado-hacia-adentro {
+  background: linear-gradient(90deg, #efb810, #f0d786);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 1px 0px rgba(238, 218, 39, 0.651), 0px -1px 0px rgba(231, 166, 25, 0.7);
+}
+
+</style>
