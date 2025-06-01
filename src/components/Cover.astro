@@ -25,6 +25,7 @@
 <script type="module">
   const button = document.getElementById('close-banner');
   const banner = document.getElementById('overlay-banner');
+  document.body.classList.add('overflow-hidden');
 
   button.addEventListener('click', () => {
     banner.classList.remove('opacity-100');
