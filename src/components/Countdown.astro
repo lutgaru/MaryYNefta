@@ -12,25 +12,25 @@ let timeLeft = "Cargando...";
 
 <script>
     async function getServerTime() {
-        try {
-            const ipResponse = await fetch("https://ipapi.co/json/");
-            const ipData = await ipResponse.json();
-            const timeZone = ipData.timezone;
+        // try {
+        //     const ipResponse = await fetch("https://ipapi.co/json/");
+        //     const ipData = await ipResponse.json();
+        //     const timeZone = ipData.timezone;
 
-            console.log("Zona horaria detectada:", timeZone);
+        //     console.log("Zona horaria detectada:", timeZone);
 
-            const timeResponse = await fetch(
-                `https://www.timeapi.io/api/Time/current/zone?timeZone=${timeZone}`,
-            );
-            const timeData = await timeResponse.json();
+        //     const timeResponse = await fetch(
+        //         `https://www.timeapi.io/api/Time/current/zone?timeZone=${timeZone}`,
+        //     );
+        //     const timeData = await timeResponse.json();
 
-            console.log("Fecha y hora obtenida:", timeData.dateTime); // 📌 "2025-03-08T06:06:07.1027541"
+        //     console.log("Fecha y hora obtenida:", timeData.dateTime); // 📌 "2025-03-08T06:06:07.1027541"
 
-            return new Date(timeData.dateTime);
-        } catch (error) {
-            console.error("Error obteniendo la hora del servidor:", error);
+        //     return new Date(timeData.dateTime);
+        // } catch (error) {
+            // console.error("Error obteniendo la hora del servidor:", error);
             return new Date(); // En caso de error, usa la hora local
-        }
+        // }
     }
 
     async function updateCountdown() {
