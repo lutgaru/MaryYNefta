@@ -8,7 +8,7 @@ const props = defineProps({
 
 const config = {
 //   height: 500,
-  itemsToShow: 2,
+  itemsToShow: 1,
   gap: 5,
   mouseWheel: true,
   wrapAround: true,
@@ -20,7 +20,7 @@ const config = {
   breakpoints: {
     // 300px and up
     500: {
-      itemsToShow: 2,
+      itemsToShow: 1,
       snapAlign: 'center',
     },
     // 400px and up
