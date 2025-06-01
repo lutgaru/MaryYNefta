@@ -20,7 +20,7 @@ const config = {
   breakpoints: {
     // 300px and up
     500: {
-      itemsToShow: 3,
+      itemsToShow: 2,
       snapAlign: 'center',
     },
     // 400px and up

@@ -11,6 +11,6 @@ const images: { id: number; url: string }[] = Object.entries(imagesimport).map((
 })
 ---
 
-<div id="gallery">
+<div id="gallery" class="w-full overflow-x-hidden">
     <Gallery images={images} client:load/>
 </div>
