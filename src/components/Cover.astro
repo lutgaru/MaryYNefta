@@ -1,25 +1,25 @@
 ---
-
+import { getImage, Image } from "astro:assets";
+import paperimage from "../assets/augustine-wong-3Om4DHcaAc0-unsplash.avif";
+const paperBackground = await getImage({ src: paperimage, format: "webp" });
 ---
 
 <div
   id="overlay-banner"
   class="fixed inset-0 z-80 flex items-center justify-center bg-white opacity-100 transition-opacity duration-1000"
+   style={`background-image: url(${paperBackground.src});`}
 >
-  <div
-    class="absolute inset-0 pointer-events-none z-70"
-    style="
-      clip-path: polygon(50% 50%, 0 0, 100% 0);
-      background: #e6e3e3;
-      height: 100%;
-      width: 100%;
-    "
-  >
-  </div>
+  <div class="absolute inset-0 bg-white opacity-50 -z-10 scroll-smooth"></div>
+<div
+  id="coverup"
+  class="absolute inset-0 pointer-events-none z-70 h-1/2 shadow-md shadow-gray-500 transition-transform duration-700"
+  style="transform: translateY(0);"
+>
+</div>
 
   <button
     id="close-banner"
-    class="z-75 p-5 rounded-full bg-red-700 font-countdown text-amber-200 text-4xl shadow-amber-800 shadow-xl transition-all duration-300 hover:p-6"
+    class="z-75 p-5 rounded-full bg-red-700 font-countdown text-amber-200 text-4xl shadow-amber-800 shadow-sm transition-all duration-300 hover:p-6"
   >
     Bienvenido
   </button>
@@ -28,18 +28,21 @@
 <script type="module">
   const button = document.getElementById("close-banner");
   const banner = document.getElementById("overlay-banner");
+  const coverup = document.getElementById("coverup");
   document.body.classList.add("overflow-hidden");
 
   button.addEventListener("click", () => {
     banner.classList.remove("opacity-100");
     banner.classList.add("opacity-0");
 
-    // Esperar a que termine la transición antes de ocultar
+    // Mueve coverup hacia arriba
+    coverup.style.transform = "translateY(-100%)";
+
     setTimeout(() => {
       banner.style.display = "none";
       document.body.classList.remove("overflow-hidden");
       window.dispatchEvent(new CustomEvent("bannerClosed"));
-    }, 1100); // un poco más de 1000ms por seguridad
+    }, 1100);
     if (typeof window.toggleAudio === "function") {
       window.toggleAudio();
     }
