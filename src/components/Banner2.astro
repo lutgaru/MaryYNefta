@@ -39,6 +39,7 @@ import Countdown from "./Countdown.astro";
 
   let index = 0;
   const nameElement = document.getElementById("dynamic-name");
+  let endAnimation = false;
 
   setInterval(() => {
     index = (index + 1) % names.length;
@@ -46,6 +47,8 @@ import Countdown from "./Countdown.astro";
   }, 3000);
   const banner = document.getElementById("banner");
   function handleScroll() {
+    if (endAnimation) return;
+    endAnimation = true;
     if (window.scrollY > banner.offsetHeight / 50) {
       document
         .getElementById("nos-casamos")
@@ -57,6 +60,8 @@ import Countdown from "./Countdown.astro";
   window.addEventListener("scroll", handleScroll);
   window.addEventListener("bannerClosed", () => {
     setTimeout(() => {
+      if (endAnimation) return;
+      endAnimation = true;
       document
         .getElementById("nos-casamos")
         .scrollIntoView({ behavior: "smooth" });
