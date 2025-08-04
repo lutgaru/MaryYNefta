@@ -1,12 +1,12 @@
 
 <template>
 <add-to-calendar-button
-  name="Title"
+  name="Boda Mary y Nefta"
   options="'Apple','Google','iCal','Outlook.com','Microsoft 365','Microsoft Teams'"
   location="https://maps.app.goo.gl/pQ4A72C1JCdg2ZXo7"
   startDate="2026-01-03"
   endDate="2026-01-03"
-  startTime="01:00"
+  startTime="12:00"
   endTime="23:59"
   timeZone="Mexico/General" 
   iCalFileName="invitacionmarynefta"
