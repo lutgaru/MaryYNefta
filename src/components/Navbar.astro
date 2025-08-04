@@ -2,7 +2,6 @@
 import Logoletter from "../assets/logoletter.svg";
 ---
 
-
 <nav class="bg-gray-800 sticky top-0 z-50">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -31,7 +30,7 @@ import Logoletter from "../assets/logoletter.svg";
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                        />
+                        ></path>
                     </svg>
                     <!-- Icon when menu is open -->
                     <svg
@@ -46,12 +45,13 @@ import Logoletter from "../assets/logoletter.svg";
                         <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            d="M6 18 18 6M6 6l12 12"
-                        />
+                            d="M6 18 18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div
+                class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+            >
                 <div class="flex shrink-0 items-center">
                     <Logoletter />
                 </div>
@@ -77,11 +77,17 @@ import Logoletter from "../assets/logoletter.svg";
                         >
                             Galería
                         </a>
-                         <a
+                        <a
                             href="#regalos"
                             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                         >
                             Mesa de Regalos
+                        </a>
+                        <a
+                            href="#confirmacion"
+                            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                        >
+                            Confirmación
                         </a>
                     </div>
                 </div>
@@ -118,6 +124,12 @@ import Logoletter from "../assets/logoletter.svg";
             >
                 Mesa de Regalos
             </a>
+            <a
+                href="#confirmacion"
+                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+                Confirmación
+            </a>
         </div>
     </div>
 </nav>
@@ -128,13 +140,14 @@ import Logoletter from "../assets/logoletter.svg";
         const mobileMenu = document.getElementById("mobile-menu");
 
         menuToggle.addEventListener("click", () => {
-            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+            const isExpanded =
+                menuToggle.getAttribute("aria-expanded") === "true";
             menuToggle.setAttribute("aria-expanded", !isExpanded);
             mobileMenu.classList.toggle("hidden");
         });
 
         // Cerrar el menú móvil al hacer clic en cualquier enlace
-        mobileMenu.querySelectorAll("a").forEach(link => {
+        mobileMenu.querySelectorAll("a").forEach((link) => {
             link.addEventListener("click", () => {
                 mobileMenu.classList.add("hidden");
                 menuToggle.setAttribute("aria-expanded", "false");
