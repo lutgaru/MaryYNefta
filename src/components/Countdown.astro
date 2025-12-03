@@ -28,14 +28,14 @@ let timeLeft = "Cargando...";
 
         //     return new Date(timeData.dateTime);
         // } catch (error) {
-            // console.error("Error obteniendo la hora del servidor:", error);
-            return new Date(); // En caso de error, usa la hora local
+        // console.error("Error obteniendo la hora del servidor:", error);
+        return new Date(); // En caso de error, usa la hora local
         // }
     }
 
     async function updateCountdown() {
         const serverTime = await getServerTime();
-        const targetDate = new Date("2026-01-03T14:00:00Z");
+        const targetDate = new Date("2026-01-03T12:00:00-06:00");
 
         // Calculamos la diferencia entre la hora local y la del servidor
         const timeOffset = serverTime - Date.now();
