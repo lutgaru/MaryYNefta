@@ -19,66 +19,90 @@ import Countdown from "./Countdown.astro";
     >
       Mari y Nefta
     </p>
-    <p class="font-ibm p-8 text-2xl italic text-gray-600">
-      te invitan a su boda el
-    </p>
-    <p class="text-4xl font-ibm italic p-7 text-gray-600">
-      3 de Enero del 2026
-    </p>
-    <Countdown />
+    <div class="lg:grid grid-cols-2 gap-x-8 gap-y-8 mt-8 w-full mx-auto">
+      <div class="flex justify-center lg:justify-end items-center">
+        <Countdown
+          targetDate="2017-05-16T12:00:00-06:00"
+          class="text-4xl lg:text-6xl outline-0 text-center font-countdown text-countdown p-2"
+        />
+      </div>
+
+      <div class="flex justify-center lg:justify-start items-center">
+        <p
+          class="font-ibm text-2xl italic text-gray-600 text-center lg:text-left"
+        >
+          Desde nuestro primer si!!
+        </p>
+      </div>
+
+      <div class="flex justify-center lg:justify-end items-center">
+        <Countdown
+          targetDate="2026-01-03T12:00:00-06:00"
+          class="text-4xl lg:text-6xl outline-0 text-center font-countdown text-countdown p-2"
+        />
+      </div>
+
+      <div class="flex justify-center lg:justify-start items-center">
+        <p
+          class="font-ibm text-2xl italic text-gray-600 text-center lg:text-left"
+        >
+          Desde nuestro gran día.
+        </p>
+      </div>
+    </div>
   </div>
-</div>
 
-<script type="module">
-  const names = [
-    "Mari y Nefta",
-    "Mar y Neft",
-    "Marisa y Adrian",
-    "Marisela y Neftalí",
-  ];
+  <script type="module">
+    const names = [
+      "Mari y Nefta",
+      "Mar y Neft",
+      "Marisa y Adrian",
+      "Marisela y Neftalí",
+    ];
 
-  let index = 0;
-  const nameElement = document.getElementById("dynamic-name");
-  let endAnimation = false;
+    let index = 0;
+    const nameElement = document.getElementById("dynamic-name");
+    let endAnimation = false;
 
-  setInterval(() => {
-    index = (index + 1) % names.length;
-    nameElement.textContent = names[index];
-  }, 3000);
-  const banner = document.getElementById("banner");
-  function handleScroll() {
-    if (endAnimation) return;
-    endAnimation = true;
-    if (window.scrollY > banner.offsetHeight / 50) {
-      document
-        .getElementById("nos-casamos")
-        .scrollIntoView({ behavior: "smooth" });
-      window.removeEventListener("scroll", handleScroll);
-    }
-  }
-
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("bannerClosed", () => {
-    setTimeout(() => {
+    setInterval(() => {
+      index = (index + 1) % names.length;
+      nameElement.textContent = names[index];
+    }, 3000);
+    const banner = document.getElementById("banner");
+    function handleScroll() {
       if (endAnimation) return;
       endAnimation = true;
-      document
-        .getElementById("nos-casamos")
-        .scrollIntoView({ behavior: "smooth" });
-      window.removeEventListener("scroll", handleScroll);
-    }, 5000);
-  });
-</script>
+      if (window.scrollY > banner.offsetHeight / 50) {
+        document
+          .getElementById("nos-casamos")
+          .scrollIntoView({ behavior: "smooth" });
+        window.removeEventListener("scroll", handleScroll);
+      }
+    }
 
-<style>
-  .text-tallado-hacia-adentro {
-    background: linear-gradient(90deg, #efb810, #f0d786);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    text-shadow:
-      0px 1px 0px rgba(238, 218, 39, 0.651),
-      0px -1px 0px rgba(231, 166, 25, 0.7);
-  }
-</style>
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("bannerClosed", () => {
+      setTimeout(() => {
+        if (endAnimation) return;
+        endAnimation = true;
+        document
+          .getElementById("nos-casamos")
+          .scrollIntoView({ behavior: "smooth" });
+        window.removeEventListener("scroll", handleScroll);
+      }, 5000);
+    });
+  </script>
+
+  <style>
+    .text-tallado-hacia-adentro {
+      background: linear-gradient(90deg, #efb810, #f0d786);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0px 1px 0px rgba(238, 218, 39, 0.651),
+        0px -1px 0px rgba(231, 166, 25, 0.7);
+    }
+  </style>
+</div>
