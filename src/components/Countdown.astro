@@ -1,42 +1,73 @@
 ---
-const targetDate = new Date("2025-03-15T00:00:00Z"); // Fecha objetivo
+// const targetDate = new Date("2025-03-15T00:00:00Z"); // Fecha objetivo
 let timeLeft = "Cargando...";
+const { targetDate, class: className, ...rest } = Astro.props;
 ---
 
 <div
-    class="text-3xl lg:text-6xl outline-0 text-center font-countdown text-countdown p-2"
-    id="countdown"
+    class={className}
+    {...rest}
+    data-target-date={targetDate}
+    data-countdown
 >
     {timeLeft}
 </div>
 
 <script>
-    function getTimeDiffString(target: Date, nowDate: Date) {
-        const diffms = target - nowDate;
-        const days = Math.floor(diffms / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-            (diffms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
-        const minutes = Math.floor((diffms % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diffms % (1000 * 60)) / 1000);
+    function getTimeDiffString(startDate: Date, endDate: Date) {
+        let start = new Date(startDate);
+        let end = new Date(endDate);
 
-        return `${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        // Swap dates if start is after end to ensure positive calculation
+        if (start > end) {
+            [start, end] = [end, start];
+        }
+
+        let years = end.getFullYear() - start.getFullYear();
+        let months = end.getMonth() - start.getMonth();
+        let days = end.getDate() - start.getDate();
+
+        let hours = end.getHours() - start.getHours();
+        let minutes = end.getMinutes() - start.getMinutes();
+        let seconds = end.getSeconds() - start.getSeconds();
+
+        if (seconds < 0) { seconds += 60; minutes--; }
+        if (minutes < 0) { minutes += 60; hours--; }
+        if (hours < 0) { hours += 24; days--; }
+
+        if (days < 0) {
+            months--;
+            // Get days in the previous month relative to the end date
+            const prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+            days += prevMonth.getDate();
+        }
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        const parts = [];
+        if (years > 0) parts.push(`${years}a`);
+        if (months > 0 || years > 0) parts.push(`${months}m`);
+        parts.push(`${days}d`);
+
+        return `${parts.join(" ")} ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     }
 
-    function calculateTimeLeft() {
-        const nowDate = new Date();
-        const target = new Date("2026-01-03T12:00:00-06:00");
+    const countdowns = document.querySelectorAll("[data-countdown]");
+    countdowns.forEach((element) => {
+        const el = element as HTMLElement;
+        const targetDate = el.dataset.targetDate;
+        if (!targetDate) return;
+        const target = new Date(targetDate);
 
-        return getTimeDiffString(target, nowDate);
-    }
+        function update() {
+            const now = new Date();
+            el.innerText = getTimeDiffString(now, target);
+        }
 
-    function updateCountdown() {
-        document.getElementById("countdown").innerText = calculateTimeLeft();
-        setInterval(() => {
-            document.getElementById("countdown").innerText =
-                calculateTimeLeft();
-        }, 1000);
-    }
-
-    updateCountdown();
+        update();
+        setInterval(update, 1000);
+    });
 </script>
