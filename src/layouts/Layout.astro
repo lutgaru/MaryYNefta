@@ -4,6 +4,11 @@ import MusicPlayer from "../components/MusicPlayer.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Banner from "../components/Banner2.astro";
+
+const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL;
+const normalize = (path: string) => path.replace(/\/$/, "") || "/";
+const isHome = normalize(pathname) === normalize(base);
 ---
 
 <!doctype html>
@@ -17,7 +22,7 @@ import Banner from "../components/Banner2.astro";
 	</head>
 	<body class="bg-white">
 		<MusicPlayer song="/MaryYNefta/song_wedding.mp3" volume={0.3} />
-		<Banner />
+		{isHome && <Banner />}
 		<Navbar />
 		<main>
 			<slot />
