@@ -1,5 +1,12 @@
 ---
 import Logoletter from "../assets/logoletter.svg";
+const base = import.meta.env.BASE_URL; // Esto devolverá "/MaryYNefta"
+const { pathname } = Astro.url;
+const isActive = (path: string) => {
+    const currentPath = pathname.endsWith("/") ? pathname : `${pathname}/`;
+    const targetPath = path.endsWith("/") ? path : `${path}/`;
+    return currentPath === targetPath;
+};
 ---
 
 <nav class="bg-gray-800 sticky top-0 z-50">
@@ -59,35 +66,24 @@ import Logoletter from "../assets/logoletter.svg";
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a
+                            href={`${base}`}
+                            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                            aria-current="page"
+                        >
+                            Resumen del gran día
+                        </a>
+                        <a
                             href="#nos-casamos"
                             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                             aria-current="page"
                         >
-                            Nos Casamos
+                            Boda civil
                         </a>
                         <a
-                            href="#cuando-y-donde"
+                            href={`${base}/invitation`}
                             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                         >
-                            Cuándo y Dónde
-                        </a>
-                        <a
-                            href="#gallery"
-                            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                            Galería
-                        </a>
-                        <a
-                            href="#regalos"
-                            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                            Mesa de Regalos
-                        </a>
-                        <a
-                            href="#confirmacion"
-                            class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                        >
-                            Confirmación
+                            Invitacion original
                         </a>
                     </div>
                 </div>
@@ -100,35 +96,24 @@ import Logoletter from "../assets/logoletter.svg";
         <div class="space-y-1 px-2 pt-2 pb-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a
+                href={`${base}`}
+                class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+                aria-current="page"
+            >
+                Resumen del gran día
+            </a>
+            <a
                 href="#nos-casamos"
                 class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
                 aria-current="page"
             >
-                Nos Casamos
+                Boda civil
             </a>
             <a
-                href="#cuando-y-donde"
+                href={`${base}/invitation`}
                 class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
-                Cuándo y Dónde
-            </a>
-            <a
-                href="#gallery"
-                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-                Galería
-            </a>
-            <a
-                href="#regalos"
-                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-                Mesa de Regalos
-            </a>
-            <a
-                href="#confirmacion"
-                class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-                Confirmación
+                Invitacion original
             </a>
         </div>
     </div>
